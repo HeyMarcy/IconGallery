@@ -3,19 +3,19 @@ export default {
     title: 'Artist',
     type: 'document',
     fields: [
-        {
-            name: 'name',
-            title: 'Artist or Ensemble Name',
-            type: 'string',
-          },
-        {
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
-            options: {
-              source: 'name',
-              maxLength: 100,
-            },
-          },
+      {
+        name: 'name',
+        title: 'Artist or Ensemble Name',
+        type: 'string',
+      },
+      {
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
+        options: {
+          source: 'name',
+          maxLength: 100,
+        },
+      },
     ]
 }

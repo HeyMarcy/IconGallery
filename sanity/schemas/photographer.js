@@ -1,29 +1,35 @@
 export default {
-    name: 'photographer',
-    title: 'Photographer',
-    type: 'document',
-    fields: [
-        {
-            name: 'name',
-            title: 'Photographer Name',
-            type: 'string',
-          },
-        {
-            name: 'headshot',
-            title: 'Headshot',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
+  title: 'Photographer',
+  name: 'photographer',
+  type: 'document',
+  fields: [
+      {
+        title: 'Photographer Name',
+        name: 'name',
+        type: 'string',
         },
-        {
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
-            options: {
-              source: 'name',
-              maxLength: 100,
-            },
-          },
+      {
+        title: 'Headshot',
+        name: 'headshot',
+        type: 'image',
+        options: {
+            hotspot: true,
+        },
+      },
+      {
+        title: 'Slug',
+        name: 'slug',
+        type: 'slug',
+        options: {
+          source: 'name',
+          maxLength: 100,
+        },
+      },
+      {
+        title: 'Photographer Bio',
+        name: 'photograher_bio',
+        type: 'text'
+      },
+      
     ]
 }
