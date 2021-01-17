@@ -1,3 +1,4 @@
+import photographer from "./photographer";
 
 export default {
     name: 'photo',
@@ -5,31 +6,30 @@ export default {
     type: 'document',
     fields: [
         {
-            name: 'name',
-            title: 'Photo Name',
-            type: 'string',
+          title: 'Photo Name',
+          name: 'name',
+          type: 'string',
           },
         {
-            name: 'photograph',
-            title: 'Photograph',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
+          title: 'Photograph',
+          name: 'photograph',
+          type: 'image',
+          options: {
+              hotspot: true,
+          },
         },
         {
-          name: 'slug',
           title: 'Slug',
+          name: 'slug',
           type: 'slug',
           options: {
             source: 'name',
-
             maxLength: 100,
           },
         },
         {
-          name: 'price',
           title: 'Price',
+          name: 'price',
           type: 'number',
           description: 'Price in USD',
         },
@@ -42,8 +42,20 @@ export default {
         {
           title: 'Artist',
           name: 'artist',
-          type: 'reference',
-          to: [{type: 'artist'}]
+          type: 'array',
+          of: [{type: 'reference', to:[{type: 'artist'}]}]
         }
-    ]
+    ],
+    // preview: {
+    //   select: {
+    //     title:'name',
+    //     media: 'photograph',
+    //     photographer: `photographer.0.name`,
+    //     artist0: 'artist.0.name'
+    //   },
+    //   prepare: fields => {
+    //     console.log(fields);
+    //     return 'name'
+    //   }
+    // }
 }
