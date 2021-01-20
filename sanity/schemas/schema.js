@@ -20,6 +20,6 @@ export default createSchema({
     artist,
     photo,
     photographer,
-    photoOption
+    photoOption,
   ]),
 })
