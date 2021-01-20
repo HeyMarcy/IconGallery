@@ -47,7 +47,7 @@ export default {
         not_active: 'not_active',
       },
       prepare: ({ name, not_active }) => ({
-        title: `${name} ${not_active ? '🌱' : ''}`,
+        title: `${name} ${not_active ? '⌛' : ''}`,
       }),
     },
 }
