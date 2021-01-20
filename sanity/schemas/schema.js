@@ -7,7 +7,6 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import artist from './artist';
 import photo from './photo';
 import photographer from './photographer';
-import option from './option';
 import photoOption from './objects/photoOption';
 
 
@@ -21,7 +20,6 @@ export default createSchema({
     artist,
     photo,
     photographer,
-    option,
     photoOption
   ]),
 })
