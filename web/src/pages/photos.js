@@ -1,12 +1,50 @@
-import React from 'react'
+import React from 'react';
+import { graphql } from 'gatsby';
+import PhotosList from '../components/PhotosList';
+import PhotoFilter from '../components/PhotoFilter';
 
-const Photos = ({children}) => {
-    return (
-        <div>
-            <h1>Photos</h1>
-                {children}
-        </div>
-    )
+export default function PhotosPage({ data }) {
+  console.log(data.photos);
+  const photos = data.photos.nodes;
+  return (
+    <div>
+      <PhotoFilter />
+      <PhotosList photos={photos} />
+    </div>
+  );
 }
 
-export default Photos
+export const query = graphql`
+  query PhotoQuery {
+    photos: allSanityPhoto {
+      nodes {
+        id
+        name
+        slug {
+          current
+        }
+        photographer {
+          name
+        }
+        artist {
+          name
+        }
+        photoOption {
+          dimension
+          isTall
+          price
+        }
+        photograph {
+          asset {
+            fixed(width: 400) {
+              ...GatsbySanityImageFixed
+            }
+            fluid(maxWidth: 1000) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+    }
+  }
+`;

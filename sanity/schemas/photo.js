@@ -1,9 +1,4 @@
 
-import PriceInput from '../components/PriceInput';
-import ItemPrice from '../components/PriceInput';
-
-
-
 export default {
     name: 'photo',
     title: 'Photo',
@@ -31,14 +26,7 @@ export default {
             maxLength: 100,
           },
         },
-        {
-          name: 'price',
-          title: 'Price',
-          type: 'number',
-          description: 'Price in USD',
-          validation: (Rule) => Rule.min(1000).max(50000),
-          inputComponent: ItemPrice,
-        },
+
         {
           title: 'Photographer',
           name: 'photographer',
@@ -52,13 +40,16 @@ export default {
           of: [{type: 'reference', to:[{type: 'artist'}]}]
         },
         {
-          title: 'Photo Option',
-          name: 'photoOption',
-          type: 'array',
-          of: [{type: 'photoOption'}]
+          title: 'Aspect ratio is tall?',
+          name: 'isTall',
+          type: 'boolean'
         },
-
-        
+        {
+          title: 'Photo Size & Edition',
+          name: 'photoSizeEdition',
+          type: 'array',
+          of: [{type: 'photoSizeEdition'}]
+        },
     ],
     preview: {
       select: {
@@ -69,8 +60,8 @@ export default {
         artist2: 'artist.2.name',
         artist3: 'artist.3.name',
       },
-      prepare: ({ title, media, ...toppings }) => {
-        const featuring = Object.values(toppings).filter(Boolean);
+      prepare: ({ title, media, ...artist }) => {
+        const featuring = Object.values(artist).filter(Boolean);
         return {
           title,
           media,

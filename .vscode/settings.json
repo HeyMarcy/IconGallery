@@ -19,12 +19,7 @@
     "javascriptreact"
   ],
   "peacock.color": "#FFC600",
-  "workbench.colorCustomizations": {
-
-    "titleBar.activeForeground": "#15202b",
-    "titleBar.inactiveForeground": "#15202b99",
-   
-  },
+  
   
 
 }
