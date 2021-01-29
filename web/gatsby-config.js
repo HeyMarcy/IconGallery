@@ -12,7 +12,6 @@ export default {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {
-      // this is the name of the plugin you are adding
       resolve: 'gatsby-source-sanity',
       options: {
         projectId: '1q2c3ohm',

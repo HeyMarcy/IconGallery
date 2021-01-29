@@ -11,6 +11,11 @@ export default {
         title: 'Artist or Ensemble Name',
         type: 'string',
       },
+      {
+        name: 'description',
+        title: 'Description',
+        type: 'text',
+      },
 
       {
         name: 'slug',

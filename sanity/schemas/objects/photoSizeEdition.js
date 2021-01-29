@@ -58,7 +58,7 @@ export default {
       {
         name: 'edition',
         title: 'Edition',
-        type: 'string',
+        type: 'number',
       }
     ],
   

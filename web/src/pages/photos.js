@@ -26,14 +26,12 @@ export const query = graphql`
         photographer {
           name
         }
+        location
+        year
         artist {
           name
         }
-        photoOption {
-          dimension
-          isTall
-          price
-        }
+
         photograph {
           asset {
             fixed(width: 400) {

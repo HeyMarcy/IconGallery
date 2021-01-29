@@ -26,7 +26,7 @@ const PhotoStyles = styled.div`
 function Photograph({ photo }) {
   return (
     <PhotoStyles>
-      <Link to={`/photos/${photo.slug.current}`}>
+      <Link to={`/photo/${photo.slug.current}`}>
         <Img fixed={photo.photograph.asset.fixed} />
         <h2>
           <span className="mark">{photo.name}</span>
