@@ -23,39 +23,36 @@ async function createPhotoPages({ graphql, actions }) {
       component: photoTemplate,
       context: {
         slug: photo.slug.current,
-        name: photo.name,
       },
     });
   });
 }
 
-async function createArtistPage({ graphql, actions }) {
-  const artistTemplate = path.resolve('./src/templates/Artist.js');
+async function createArtistPages({ graphql, actions }) {
+  const artistTemplate = path.resolve('./src/pages/photos.js'); // This uses the Photo template
   const { data } = await graphql(`
     query {
       artists: allSanityArtist {
         nodes {
           name
           id
-          slug {
-            current
-          }
         }
       }
     }
   `);
+
   data.artists.nodes.forEach((artist) => {
     actions.createPage({
-      path: `artist/${artist.slug.current}`,
+      path: `artist/${artist.name}`,
       component: artistTemplate,
       context: {
-        slug: artist.slug.current,
         name: artist.name,
+        artistRegex: `/${artist.name}/i`,
       },
     });
   });
 }
 
 export async function createPages(params) {
-  await Promise.all([createPhotoPages(params), createArtistPage(params)]);
+  await Promise.all([createPhotoPages(params), createArtistPages(params)]);
 }

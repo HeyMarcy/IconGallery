@@ -43,8 +43,8 @@ export default {
         to: [{type: 'photographer'}]
       },
       {
-        title: 'Artist',
-        name: 'artist',
+        title: 'Artists',
+        name: 'artists',
         type: 'array',
         of: [{type: 'reference', to:[{type: 'artist'}]}]
       },
@@ -64,8 +64,8 @@ export default {
         artist2: 'artist.2.name',
         artist3: 'artist.3.name',
       },
-      prepare: ({ title, media, ...artist }) => {
-        const featuring = Object.values(artist).filter(Boolean);
+      prepare: ({ title, media, ...artists }) => {
+        const featuring = Object.values(artists).filter(Boolean);
         return {
           title,
           media,

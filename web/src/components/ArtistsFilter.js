@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 function countPhotosOfArtist(photos) {
   const counts = photos
-    .map((photo) => photo.artist)
+    .map((photo) => photo.artists)
     .flat()
     .reduce((acc, artist) => {
       const existingArtist = acc[artist.id];
@@ -23,31 +23,24 @@ function countPhotosOfArtist(photos) {
   return sortedPhotos;
 }
 
-// static query - doesn't take a variable.
-export default function PhotoFilter() {
-  const { allPhotos, artists, photographers } = useStaticQuery(graphql`
+export default function ArtistsFilter({ activeArtist }) {
+  const { photos, artists } = useStaticQuery(graphql`
     query {
-      photographers: allSanityPhotographer {
-        nodes {
-          name
-          id
-        }
-      }
+      # photographers: allSanityPhotographer {
+      #   nodes {
+      #     name
+      #     id
+      #   }
+      # }
       artists: allSanityArtist {
         nodes {
           name
           id
         }
       }
-      allPhotos: allSanityPhoto {
+      photos: allSanityPhoto {
         nodes {
-          name
-          id
-          photographer {
-            name
-            id
-          }
-          artist {
+          artists {
             name
             id
           }
@@ -55,22 +48,23 @@ export default function PhotoFilter() {
       }
     }
   `);
-  console.clear();
-  // console.log({ allPhotos, artists, photographers });
-  // console.log(allPhotos.nodes.map((photo) => photo.artist).flat());
-  const photoCountOfArtist = countPhotosOfArtist(allPhotos.nodes);
 
-  // list all photographers
-  // list all artists
-  // list genre
-  // loop over photos and display how many are by a photographer
-  // loop over photos and display how many are of an artist
+  const photoCountOfArtist = countPhotosOfArtist(photos.nodes);
+
   return (
     <PhotoStyles>
-      {photoCountOfArtist.map((photo) => (
-        <Link to={`/photos/${photo.name}`} key={photo.id}>
-          <span className="name">{photo.name}</span>
-          <span className="count">{photo.count}</span>
+      <Link to="/photos">
+        <span className="name">All</span>
+        <span className="count">{photos.nodes.length}</span>
+      </Link>
+      {photoCountOfArtist.map((artist) => (
+        <Link
+          to={`/artist/${artist.name}`}
+          key={artist.id}
+          className={artist.name === activeArtist ? 'active' : ''}
+        >
+          <span className="name">{artist.name}</span>
+          <span className="count">{artist.count}</span>
         </Link>
       ))}
     </PhotoStyles>

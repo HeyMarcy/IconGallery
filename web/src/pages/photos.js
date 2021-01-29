@@ -1,36 +1,39 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import PhotosList from '../components/PhotosList';
-import PhotoFilter from '../components/PhotoFilter';
+import ArtistsFilter from '../components/ArtistsFilter';
 
 export default function PhotosPage({ data }) {
-  console.log(data.photos);
   const photos = data.photos.nodes;
+  console.log({ photos });
   return (
     <div>
-      <PhotoFilter />
+      <ArtistsFilter />
       <PhotosList photos={photos} />
     </div>
   );
 }
 
 export const query = graphql`
-  query PhotoQuery {
-    photos: allSanityPhoto {
+  query PhotoQuery($artistRegex: String) {
+    photos: allSanityPhoto(
+      filter: { artists: { elemMatch: { name: { regex: $artistRegex } } } }
+    ) {
       nodes {
-        id
-        name
-        slug {
-          current
+        artists {
+          name
+          id
         }
+        id
+        location
+        name
         photographer {
           name
         }
-        location
-        year
-        artist {
-          name
+        slug {
+          current
         }
+        year
 
         photograph {
           asset {
@@ -46,3 +49,21 @@ export const query = graphql`
     }
   }
 `;
+
+// import React from "react"
+// import { graphql } from "gatsby"
+
+// const ComponentName = ({ data }) => <pre>{JSON.stringify(data, null, 4)}</pre>
+
+// export const query = graphql`
+//   {
+//     allSanityPhoto(filter: {artist: {elemMatch: {name: {regex: ""}}}}) {
+//       nodes {
+//         id
+//         name
+//       }
+//     }
+//   }
+// `
+
+// export default ComponentName

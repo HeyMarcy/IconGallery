@@ -33,7 +33,7 @@ function Photograph({ photo }) {
         </h2>
       </Link>
       <p>{photo.photographer.name}</p>
-      <p>{photo.artist.map((starName) => starName.name).join(', ')}</p>
+      <p>{photo.artists.map((artist) => artist.name).join(', ')}</p>
     </PhotoStyles>
   );
 }
